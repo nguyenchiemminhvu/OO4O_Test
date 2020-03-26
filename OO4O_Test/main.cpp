@@ -28,6 +28,7 @@ int main()
 		allEmp.MoveNext();
 	}
 
+	noncondb.Close();
 	OShutdown();
 	return 0;
 }
