@@ -59,7 +59,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="ORACLM32.LIB OMFC60.LIB $(NOINHERIT)"
+				AdditionalDependencies="ORACLM32.LIB $(NOINHERIT)"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=".\LIB"
 				GenerateDebugInformation="true"
