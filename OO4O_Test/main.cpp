@@ -1,34 +1,28 @@
+#include <string>
+#include <iostream>
+#include <afxwin.h>
+
 #include <oracl.h>
+#include <obound.h>
+#include <omfc.h>
 
 using namespace System;
-
-#define DEBUG Console::Write
-#define DEBUG_LINE Console::WriteLine
+using namespace System::Runtime::InteropServices;
 
 int main()
 {
 	OStartup();
-
-	ODatabase noncondb;
-	oresult res = noncondb.Open("localhost:1521/NONCONDB", "HR", "HR");
-	if (res != OSUCCESS)
+	
+	ODatabase db("localhost:1521/NONCONDB", "HR", "HR");
+	ODynaset ds(db, "select sum(SALARY) as sumsal from EMPLOYEES");
+	ds.MoveFirst();
+	if (!ds.IsEOF())
 	{
-		DEBUG_LINE("Can not open NONCONDB database");
-		return -1;
+		double s;
+		ds.GetField("sumsal").GetValue(&s);
+		std::cout << s << std::endl;
 	}
-
-	ODynaset allEmp(noncondb, "select * from employees");
-	double salary = 0.0f;
-	while (!allEmp.IsEOF())
-	{
-		allEmp.GetFieldValue("salary", &salary);
-		
-		DEBUG_LINE(salary);
-
-		allEmp.MoveNext();
-	}
-
-	noncondb.Close();
+	
 	OShutdown();
 	return 0;
 }

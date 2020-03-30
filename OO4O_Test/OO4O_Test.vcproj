@@ -20,6 +20,7 @@
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
+			UseOfMFC="2"
 			CharacterSet="1"
 			ManagedExtensions="1"
 			>
@@ -58,7 +59,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="ORACLM32.LIB $(NOINHERIT)"
+				AdditionalDependencies="ORACLM32.LIB OMFC60.LIB $(NOINHERIT)"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=".\LIB"
 				GenerateDebugInformation="true"
