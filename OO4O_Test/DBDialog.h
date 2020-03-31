@@ -28,6 +28,18 @@ namespace OO4O_Test
 	public ref class DBDialog : public System::Windows::Forms::Form
 	{
 	public:
+		static ODatabase LoginNewSession()
+		{
+			OSession newSession;
+			newSession.Open();
+
+			DBDialog ^diag = gcnew DBDialog();
+			diag->ShowDialog(nullptr);
+			ODatabase db = diag->GetDatabase();
+			return db;
+		}
+
+	public:
 		ODatabase *_db;
 		ODatabase GetDatabase()
 		{
@@ -147,6 +159,7 @@ namespace OO4O_Test
 			// 
 			this->textPassword->Location = System::Drawing::Point(84, 83);
 			this->textPassword->Name = L"textPassword";
+			this->textPassword->PasswordChar = '*';
 			this->textPassword->Size = System::Drawing::Size(204, 20);
 			this->textPassword->TabIndex = 5;
 			// 
@@ -183,6 +196,9 @@ namespace OO4O_Test
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->MaximizeBox = false;
+			this->MinimizeBox = false;
 			this->Name = L"DBDialog";
 			this->Text = L"Database Connection";
 			this->ResumeLayout(false);
